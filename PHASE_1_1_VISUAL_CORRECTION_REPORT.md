@@ -79,5 +79,6 @@ Inspected in headless Chrome across all target viewports:
 
 ---
 
-## 10. Remaining Visual Deviations
-- None for the Header and Hero section. The rendered output matches the Swiss editorial structure, visible grid architecture, and asymmetric composition of the design reference.
+## 10. Subsequent Evolution: Phase 1.2
+- **Transition:** Following the review of Phase 1.1, the composition was further refined in **Phase 1.2** to lock the single-viewport composition (`Header + Hero ≈ 1 viewport`), elevate the display typography scale (`clamp(4.0rem, 6.8vw, 7.2rem)`), and introduce the GSAP ScrollTrigger bidirectional photographic reveal.
+- **Detailed Reference:** See [`PHASE_1_2_HERO_VIEWPORT_REPORT.md`](file:///c:/Users/ASUS/Documents/New%20Projects/bal-vidyavasham/PHASE_1_2_HERO_VIEWPORT_REPORT.md) for full audit metrics and benchmarks.
