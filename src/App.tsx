@@ -41,8 +41,8 @@ export function App() {
       {/* Editorial Navigation Header */}
       <Header activeSection={activeSection} />
 
-      {/* Main Content */}
-      <main id="main-content" className="relative z-10 flex-1 w-full min-w-0">
+      {/* Main Content: Guaranteed above background atmosphere via z-10 & isolate, offset by fixed header */}
+      <main id="main-content" className="relative z-10 flex-1 w-full min-w-0 isolate pt-14 sm:pt-16">
         {/* Section 01: Hero / School Introduction */}
         <HeroSection />
 

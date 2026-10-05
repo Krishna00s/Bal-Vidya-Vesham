@@ -19,7 +19,7 @@ export function Header({ activeSection = '01' }: HeaderProps) {
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full bg-[#F5F1E8]/98 backdrop-blur-[4px] border-b border-[rgba(20,32,31,0.12)]">
+      <header className="fixed top-0 left-0 right-0 z-50 w-full bg-[#F5F1E8]/98 backdrop-blur-[8px] border-b border-[rgba(20,32,31,0.12)]">
         <div className="mx-auto flex h-14 sm:h-16 w-full max-w-[1440px] items-stretch justify-between px-5 sm:px-8 md:px-12 lg:px-16">
           {/* Left: Brand Identity */}
           <div className="flex items-center shrink-0 py-2 pr-4 sm:pr-8">

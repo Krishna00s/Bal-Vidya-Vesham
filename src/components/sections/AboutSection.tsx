@@ -124,7 +124,7 @@ export function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-12 lg:gap-y-0 lg:gap-x-8 items-start relative">
           
           {/* Left Column (Cols 1 to 5): Section Anchor + Narrative */}
-          <div className="lg:col-span-5 flex flex-col justify-between self-stretch pr-0 lg:pr-4 2xl:pr-6">
+          <div className="lg:col-span-5 relative z-20 flex flex-col justify-between self-stretch pr-0 lg:pr-4 2xl:pr-6">
             <div>
               {/* Section Anchor: 02 Numeral + Micro Label */}
               <div className="about-eyebrow flex items-baseline gap-3.5 mb-6 sm:mb-8">
@@ -171,7 +171,7 @@ export function AboutSection() {
           </div>
 
           {/* Middle Column (Cols 6 to 9): Primary Environmental Photograph */}
-          <div className="lg:col-span-4 flex flex-col justify-start">
+          <div className="lg:col-span-4 relative z-10 flex flex-col justify-start">
             <div className="about-primary-photo relative border border-[rgba(20,32,31,0.12)] bg-[#EEE9DD] overflow-hidden aspect-[4/3] sm:aspect-[16/14] lg:aspect-[4/3.8] 2xl:aspect-[4/3.7] shadow-[0_1px_3px_rgba(20,32,31,0.04)]">
               <img
                 src={ABOUT_CONTENT.primaryImage.src}
@@ -184,7 +184,7 @@ export function AboutSection() {
           </div>
 
           {/* Right Column (Cols 10 to 12): Secondary Study Photo + Values + Handwritten Accent */}
-          <div className="lg:col-span-3 flex flex-col justify-between self-stretch gap-8 lg:gap-0 pl-0 lg:pl-2 2xl:pl-4">
+          <div className="lg:col-span-3 relative z-20 flex flex-col justify-between self-stretch gap-8 lg:gap-0 pl-0 lg:pl-2 2xl:pl-4">
             {/* Top Sub-Row: Secondary Photo paired with Values Stack */}
             <div className="flex items-start gap-4 sm:gap-6 lg:gap-4 2xl:gap-5">
               {/* Secondary Study Photograph */}

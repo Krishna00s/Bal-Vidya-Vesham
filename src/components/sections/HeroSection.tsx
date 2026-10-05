@@ -134,7 +134,7 @@ export function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-6 sm:gap-y-8 lg:gap-y-0 h-full items-stretch relative">
           
           {/* Eyebrow Annotation (Col 1 to 5 on Desktop, Top on Mobile) */}
-          <div className="order-1 lg:col-start-1 lg:col-end-6 lg:row-start-1 self-start pb-1 sm:pb-2">
+          <div className="order-1 lg:col-start-1 lg:col-end-6 lg:row-start-1 self-start pb-1 sm:pb-2 relative z-20">
             <div className="hero-eyebrow flex items-center justify-between sm:justify-start gap-3">
               <div className="flex items-center gap-2.5 sm:gap-3">
                 <span className="w-5 sm:w-8 h-[1px] bg-[rgba(20,32,31,0.25)] shrink-0" aria-hidden="true" />
