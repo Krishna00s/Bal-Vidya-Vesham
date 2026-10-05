@@ -114,7 +114,7 @@ export function AboutSection() {
       ref={sectionRef}
       id="about"
       aria-label="About Our School"
-      className="relative w-full overflow-hidden bg-[#F5F1E8] border-b border-[rgba(20,32,31,0.14)]"
+      className="relative w-full overflow-hidden bg-transparent border-b border-[rgba(20,32,31,0.14)]"
     >
       {/* Background Architectural Grid Overlay */}
       <GridOverlay />

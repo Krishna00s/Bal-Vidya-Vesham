@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { initLenis } from '@/motion/lenis.ts'
+import { GlobalAtmosphere } from '@/components/layout/GlobalAtmosphere.tsx'
 import { Header } from '@/components/layout/Header.tsx'
 import { HeroSection } from '@/components/sections/HeroSection.tsx'
 import { AboutSection } from '@/components/sections/AboutSection.tsx'
@@ -34,11 +35,14 @@ export function App() {
 
   return (
     <div className="relative min-h-screen w-full max-w-full overflow-x-hidden bg-[#F5F1E8] text-[#14201F] flex flex-col font-sans selection:bg-[#063B31] selection:text-[#F5F1E8]">
+      {/* Site-Wide Living Ivory Atmospheric Background System */}
+      <GlobalAtmosphere />
+
       {/* Editorial Navigation Header */}
       <Header activeSection={activeSection} />
 
       {/* Main Content */}
-      <main id="main-content" className="flex-1 w-full min-w-0">
+      <main id="main-content" className="relative z-10 flex-1 w-full min-w-0">
         {/* Section 01: Hero / School Introduction */}
         <HeroSection />
 

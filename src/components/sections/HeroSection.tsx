@@ -124,7 +124,7 @@ export function HeroSection() {
       ref={sectionRef}
       id="home"
       aria-label="Bal Vidyavasham School Introduction"
-      className="relative w-full overflow-hidden bg-[#F5F1E8] border-b border-[rgba(20,32,31,0.14)] min-h-[calc(100svh-3.5rem)] sm:min-h-[calc(100svh-4rem)] lg:h-[calc(100svh-4rem)] lg:min-h-[580px] flex flex-col justify-between"
+      className="relative w-full overflow-hidden bg-transparent border-b border-[rgba(20,32,31,0.14)] min-h-[calc(100svh-3.5rem)] sm:min-h-[calc(100svh-4rem)] lg:h-[calc(100svh-4rem)] lg:min-h-[580px] flex flex-col justify-between"
     >
       {/* Background Architectural Grid Overlay */}
       <GridOverlay />
