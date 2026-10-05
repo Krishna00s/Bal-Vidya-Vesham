@@ -106,14 +106,14 @@ body {
 }
 
 .hero-title-desktop {
-  font-size: clamp(4.0rem, 6.8vw, 7.2rem);
+  font-size: clamp(4.25rem, 7.2vw, 7.6rem);
   line-height: 0.82;
   letter-spacing: -0.045em;
 }
 
 @media (min-width: 1536px) {
   .hero-title-desktop {
-    font-size: clamp(4.8rem, 7.4vw, 7.6rem);
+    font-size: clamp(5.0rem, 7.6vw, 8.0rem);
     line-height: 0.80;
   }
 }

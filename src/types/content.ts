@@ -40,3 +40,27 @@ export interface HeroContent {
   chapterTheme: string
   scrollIndicator: string
 }
+
+export interface AboutContent {
+  chapterIndex: string
+  microLabel: string
+  headlinePart1: string
+  headlineHighlight: string
+  headlinePart2: string
+  bodyText: string
+  action: {
+    label: string
+    href: string
+  }
+  valuesList: string[]
+  handwrittenNote: string
+  primaryImage: {
+    src: string
+    alt: string
+  }
+  secondaryImage: {
+    src: string
+    alt: string
+  }
+}
+

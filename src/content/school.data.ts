@@ -1,4 +1,4 @@
-import type { SchoolMetadata, HeroContent } from '@/types/content.ts'
+import type { SchoolMetadata, HeroContent, AboutContent } from '@/types/content.ts'
 
 export const SCHOOL_METADATA: SchoolMetadata = {
   name: 'Bal Vidyavasham',
@@ -38,3 +38,28 @@ export const HERO_CONTENT: HeroContent = {
   chapterTheme: 'SMALL BEGINNINGS ENDLESS POSSIBILITIES',
   scrollIndicator: 'SCROLL TO EXPLORE',
 }
+
+export const ABOUT_CONTENT: AboutContent = {
+  chapterIndex: '02',
+  microLabel: 'ABOUT OUR SCHOOL',
+  headlinePart1: 'Every child\nhas a ',
+  headlineHighlight: 'story',
+  headlinePart2: '\nwaiting to\nunfold.',
+  bodyText:
+    'At Bal Vidyavasham, we believe in a joyful and meaningful learning journey where children are encouraged to ask, explore, create and grow every single day.',
+  action: {
+    label: 'Our Approach',
+    href: '#approach',
+  },
+  valuesList: ['LEARN', 'EXPLORE', 'CREATE', 'GROW', 'BELONG'],
+  handwrittenNote: 'A brighter tomorrow begins right here.',
+  primaryImage: {
+    src: '/images/about-students-walking.png',
+    alt: 'Bal Vidyavasham elementary students in school uniform walking along campus corridor with backpacks',
+  },
+  secondaryImage: {
+    src: '/images/about-student-learning.png',
+    alt: 'Young student engaged in focused writing study inside Bal Vidyavasham classroom',
+  },
+}
+
