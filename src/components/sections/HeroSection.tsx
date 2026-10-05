@@ -4,9 +4,7 @@ import { ArrowRight } from 'lucide-react'
 import { HERO_CONTENT } from '@/content/school.data.ts'
 import { usePrefersReducedMotion } from '@/hooks/usePrefersReducedMotion.ts'
 import { Container } from '@/components/ui/Container.tsx'
-import { MicroLabel } from '@/components/ui/MicroLabel.tsx'
-import { SectionNumber } from '@/components/ui/SectionNumber.tsx'
-import { AspectMedia } from '@/components/ui/AspectMedia.tsx'
+import { GridOverlay } from '@/components/ui/GridOverlay.tsx'
 import { scrollToTarget } from '@/motion/lenis.ts'
 
 export function HeroSection() {
@@ -25,7 +23,7 @@ export function HeroSection() {
 
       tl.from('.hero-eyebrow', {
         opacity: 0,
-        y: 16,
+        y: 14,
         duration: 0.6,
       })
         .from(
@@ -39,19 +37,29 @@ export function HeroSection() {
           '-=0.35',
         )
         .from(
+          '.hero-image-block',
+          {
+            opacity: 0,
+            scale: 0.985,
+            duration: 1.0,
+            ease: 'expo.out',
+          },
+          '-=0.7',
+        )
+        .from(
           '.hero-statement',
           {
             opacity: 0,
-            y: 20,
+            y: 18,
             duration: 0.75,
           },
-          '-=0.55',
+          '-=0.6',
         )
         .from(
           '.hero-copy',
           {
             opacity: 0,
-            y: 18,
+            y: 16,
             duration: 0.7,
           },
           '-=0.55',
@@ -60,20 +68,10 @@ export function HeroSection() {
           '.hero-cta',
           {
             opacity: 0,
-            y: 15,
+            y: 14,
             duration: 0.6,
           },
           '-=0.5',
-        )
-        .from(
-          '.hero-image-container',
-          {
-            opacity: 0,
-            scale: 0.98,
-            duration: 1.1,
-            ease: 'expo.out',
-          },
-          '-=0.75',
         )
         .from(
           '.hero-sidebar',
@@ -98,107 +96,127 @@ export function HeroSection() {
       ref={sectionRef}
       id="home"
       aria-label="Bal Vidyavasham School Introduction"
-      className="relative w-full pt-6 pb-16 sm:pt-10 sm:pb-24 lg:pt-14 lg:pb-32 overflow-hidden bg-[#F5F1E8]"
+      className="relative w-full overflow-hidden bg-[#F5F1E8] border-b border-[rgba(20,32,31,0.14)]"
     >
-      <Container>
-        {/* Main Responsive Swiss Grid: 1 column stack on mobile, 12 columns on desktop */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-10 lg:gap-y-0 gap-x-0 lg:gap-x-8 items-start w-full">
-          
-          {/* LEFT COLUMN: Editorial Narrative (Full width on mobile, 7 columns on desktop) */}
-          <div className="col-span-1 lg:col-span-7 flex flex-col z-10 lg:pr-4 min-w-0 w-full">
-            
-            {/* Eyebrow Label with Hairline Rule */}
-            <div className="hero-eyebrow flex items-center gap-2.5 sm:gap-4 mb-4 sm:mb-6 min-w-0">
-              <span className="w-5 sm:w-12 h-[1px] bg-[rgba(20,32,31,0.2)] shrink-0" aria-hidden="true" />
-              <MicroLabel>
-                {HERO_CONTENT.microLabel}
-              </MicroLabel>
-            </div>
+      {/* Background Architectural Grid Overlay */}
+      <GridOverlay />
 
-            {/* Monumental Hero Headline */}
-            <h1 className="font-sans font-bold uppercase tracking-[-0.03em] sm:tracking-[-0.04em] text-[#14201F] leading-[0.88] select-none text-[clamp(2.1rem,7.2vw,7.8rem)] break-words">
+      <Container className="relative z-10 py-6 sm:py-8 lg:py-10">
+        {/* Single Unified Responsive Editorial Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-6 sm:gap-y-8 lg:gap-y-0 min-h-0 lg:min-h-[580px] 2xl:min-h-[640px] items-stretch relative">
+          
+          {/* Eyebrow Annotation (Col 1 to 5 on Desktop, Top on Mobile) */}
+          <div className="order-1 lg:col-start-1 lg:col-end-6 lg:row-start-1 self-start pb-1 sm:pb-3 lg:pb-4">
+            <div className="hero-eyebrow flex items-center justify-between sm:justify-start gap-3">
+              <div className="flex items-center gap-2.5 sm:gap-3">
+                <span className="w-5 sm:w-8 h-[1px] bg-[rgba(20,32,31,0.25)] shrink-0" aria-hidden="true" />
+                <div className="flex flex-col">
+                  <span className="font-mono text-[8.5px] sm:text-[9.5px] 2xl:text-[10px] uppercase tracking-[0.14em] text-[#14201F] font-semibold leading-tight">
+                    A NURTURING BEGINNING
+                  </span>
+                  <span className="hidden sm:block font-mono text-[8.5px] sm:text-[9.5px] 2xl:text-[10px] uppercase tracking-[0.14em] text-[#8E9592] leading-tight">
+                    FOR YOUNG MINDS
+                  </span>
+                </div>
+              </div>
+
+              {/* Mobile Chapter Tag */}
+              <div className="flex items-baseline gap-1 font-mono text-[#14201F] lg:hidden shrink-0">
+                <span className="text-[9.5px] text-[#8E9592]">SEC</span>
+                <span className="text-sm font-bold">{HERO_CONTENT.chapterIndex}</span>
+              </div>
+            </div>
+            <div className="mt-2.5 sm:mt-3.5 w-12 sm:w-16 h-[1px] bg-[rgba(20,32,31,0.2)]" aria-hidden="true" />
+          </div>
+
+          {/* Architectural Headline BAL VIDYAVASHAM (Spans Col 1 to 10 on Desktop across photo) */}
+          <div className="order-2 lg:col-start-1 lg:col-end-10 lg:row-start-2 z-20 self-center py-1 sm:py-2">
+            <h1 className="hero-title-mobile lg:hero-title-desktop font-sans font-bold uppercase tracking-[-0.035em] lg:tracking-[-0.04em] text-[#14201F] select-none">
               <span className="hero-heading-line block">
                 {HERO_CONTENT.schoolNamePrimary}
               </span>
-              <span className="hero-heading-line block -mt-1 sm:-mt-2 lg:-mt-3">
+              <span className="hero-heading-line block whitespace-nowrap mt-0.5 sm:-mt-1 2xl:-mt-2">
                 {HERO_CONTENT.schoolNameSecondary}
               </span>
             </h1>
+          </div>
 
-            {/* Editorial Statement */}
-            <p className="hero-statement font-serif italic text-[clamp(1.5rem,3.2vw,2.75rem)] font-medium text-[#14201F] leading-[1.12] tracking-tight mt-6 sm:mt-8 max-w-[560px]">
+          {/* Hero Photograph (Col 6 to 11 on Desktop; placed naturally in mobile reading flow) */}
+          <div className="order-3 lg:col-start-6 lg:col-end-12 lg:row-start-1 lg:row-end-4 relative z-10 border border-[rgba(20,32,31,0.12)] lg:border-t-0 lg:border-b-0 lg:border-l lg:border-r bg-[#EEE9DD] overflow-hidden aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto min-h-0 lg:min-h-[560px] 2xl:min-h-[640px] hero-image-block">
+            <img
+              src="/images/hero-student.jpg"
+              alt="Joyful young student smiling in school uniform at Bal Vidyavasham campus courtyard"
+              className="w-full h-full object-cover object-[center_35%] lg:object-[center_right] transition-transform duration-700 hover:scale-[1.015]"
+              loading="eager"
+              fetchPriority="high"
+            />
+          </div>
+
+          {/* Narrative Statement, Copy & Primary Action (Col 1 to 5 on Desktop) */}
+          <div className="order-4 lg:col-start-1 lg:col-end-6 lg:row-start-3 z-20 self-end pt-2 sm:pt-4 flex flex-col gap-4 2xl:gap-5">
+            {/* Secondary Editorial Voice: Serif Statement */}
+            <p className="hero-statement font-serif italic text-[clamp(1.4rem,3vw,2.5rem)] font-medium text-[#14201F] leading-[1.12] tracking-tight max-w-[360px] 2xl:max-w-[400px]">
               {HERO_CONTENT.statement}
             </p>
 
-            {/* Supporting Copy */}
-            <p className="hero-copy font-sans text-[15px] sm:text-[16px] lg:text-[17px] text-[#4B5552] leading-[1.6] mt-4 sm:mt-5 max-w-[460px]">
+            {/* Informational UI Body Copy */}
+            <p className="hero-copy font-sans text-[14.5px] 2xl:text-[15.5px] text-[#4B5552] leading-[1.6] max-w-[420px]">
               {HERO_CONTENT.supportingCopy}
             </p>
 
-            {/* Primary Action Button */}
-            <div className="hero-cta mt-8 sm:mt-10 flex items-center gap-6">
+            {/* Action Button & Location Coordinate */}
+            <div className="hero-cta flex flex-wrap items-center justify-between sm:justify-start gap-4 sm:gap-6 pt-2 border-t sm:border-t-0 border-[rgba(20,32,31,0.12)]">
               <a
                 href={HERO_CONTENT.primaryAction.href}
                 onClick={handleCtaClick}
                 className="group inline-flex items-center gap-3.5 focus-visible:outline-2 focus-visible:outline-[#063B31]"
               >
-                {/* Circular Dark Icon Trigger */}
-                <span className="flex items-center justify-center w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-[#063B31] text-[#F5F1E8] transition-transform duration-300 group-hover:scale-105 group-hover:bg-[#022B24] shrink-0">
-                  <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-0.5" />
+                <span className="flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 2xl:w-12 2xl:h-12 rounded-full bg-[#14201F] text-[#F5F1E8] transition-transform duration-300 group-hover:scale-105 group-hover:bg-[#063B31] shrink-0">
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 transition-transform duration-300 group-hover:translate-x-0.5" />
                 </span>
-                <span className="font-sans text-[14px] sm:text-[15px] font-semibold text-[#14201F] tracking-[0.01em] group-hover:text-[#063B31] transition-colors">
+                <span className="font-sans text-[13.5px] sm:text-[14px] 2xl:text-[15px] font-semibold text-[#14201F] tracking-[0.01em] group-hover:text-[#063B31] transition-colors">
                   {HERO_CONTENT.primaryAction.label}
                 </span>
               </a>
-            </div>
 
-            {/* Location Tag */}
-            <div className="hero-meta mt-12 sm:mt-16 pt-6 border-t border-[rgba(20,32,31,0.12)] max-w-[260px]">
-              <span className="block font-mono text-[9px] sm:text-[10px] tracking-[0.16em] uppercase text-[#8E9592] leading-relaxed">
-                {HERO_CONTENT.locationBadge.line1}
-              </span>
-              <span className="block font-mono text-[9px] sm:text-[10px] tracking-[0.16em] uppercase text-[#8E9592] leading-relaxed">
-                {HERO_CONTENT.locationBadge.line2}
-              </span>
-            </div>
-          </div>
+              {/* Subtle vertical rule divider */}
+              <div className="hidden sm:block w-[1px] h-8 bg-[rgba(20,32,31,0.14)]" aria-hidden="true" />
 
-          {/* RIGHT COLUMN: Editorial Child Photograph (Full width on mobile, 4 columns on desktop) */}
-          <div className="col-span-1 lg:col-span-4 hero-image-container relative min-w-0">
-            <div className="relative w-full border border-[rgba(20,32,31,0.12)] shadow-sm bg-[#EEE9DD]">
-              <AspectMedia
-                src="/images/hero-student.jpg"
-                alt="Joyful young student smiling in school uniform at Bal Vidyavasham campus courtyard"
-                aspectRatio="3/4"
-                priority={true}
-                imageClassName="hover:scale-[1.015]"
-              />
+              {/* Precise geographic coordinates */}
+              <div className="flex flex-col font-mono text-[8.5px] sm:text-[9px] uppercase tracking-[0.16em] text-[#8E9592] leading-tight">
+                <span className="font-semibold text-[#14201F]/80">{HERO_CONTENT.locationBadge.line1}</span>
+                <span>{HERO_CONTENT.locationBadge.line2}</span>
+              </div>
             </div>
           </div>
 
-          {/* RIGHTMOST MARGIN: Chapter Navigation & Scroll Indicator (Column 12 on desktop) */}
-          <div className="hidden lg:flex lg:col-span-1 hero-sidebar flex-col justify-between items-end self-stretch pl-2 text-right">
-            {/* Chapter 01 Indicator */}
-            <div className="flex flex-col items-end">
-              <SectionNumber number={HERO_CONTENT.chapterIndex} className="text-4xl 2xl:text-5xl" />
-              <div className="mt-4 flex flex-col items-end font-mono text-[8.5px] uppercase tracking-[0.15em] text-[#8E9592] leading-tight max-w-[90px]">
+          {/* Right Sidebar Metadata (Col 12 on Desktop) */}
+          <div className="order-5 hidden lg:flex lg:col-start-12 lg:col-end-13 lg:row-start-1 lg:row-end-4 relative z-20 flex-col justify-between items-center py-4 pl-3 pr-1 text-center hero-sidebar">
+            {/* Section 01 Numeral and stacked micro metadata */}
+            <div className="flex flex-col items-center">
+              <span className="font-mono text-4xl 2xl:text-5xl font-bold tracking-tighter text-[#14201F]">
+                {HERO_CONTENT.chapterIndex}
+              </span>
+              <div className="mt-3 flex flex-col items-center font-mono text-[8px] 2xl:text-[8.5px] uppercase tracking-[0.16em] text-[#8E9592] leading-tight">
                 <span>SMALL</span>
                 <span>BEGINNINGS</span>
                 <span>ENDLESS</span>
                 <span>POSSIBILITIES</span>
               </div>
-              <span className="w-1.5 h-1.5 rounded-full bg-[#14201F] mt-5 mr-1" aria-hidden="true" />
             </div>
 
-            {/* Scroll To Explore Indicator with Vertical Rule */}
-            <div className="flex flex-col items-center gap-4 mt-auto">
+            {/* Swiss circular dot marker */}
+            <span className="w-2 h-2 rounded-full bg-[#14201F] my-auto" aria-hidden="true" />
+
+            {/* Scroll indicator with fine vertical line */}
+            <div className="flex flex-col items-center gap-3">
               <span
                 className="font-mono text-[8px] uppercase tracking-[0.2em] text-[#8E9592] [writing-mode:vertical-rl] rotate-180 select-none"
                 aria-hidden="true"
               >
                 {HERO_CONTENT.scrollIndicator}
               </span>
-              <span className="w-[1px] h-12 bg-[rgba(20,32,31,0.2)] block" aria-hidden="true" />
+              <span className="w-[1px] h-12 bg-[rgba(20,32,31,0.22)] block" aria-hidden="true" />
             </div>
           </div>
 

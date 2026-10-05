@@ -28,6 +28,7 @@
 * `src/types/content.ts` — Shared TypeScript definitions for navigation and school metadata.
 * `src/content/navigation.data.ts` — Navigation links and header CTA data source.
 * `src/content/school.data.ts` — Verified school location and hero content with placeholder flags.
+* `src/components/ui/GridOverlay.tsx` — Architectural Swiss grid layer with hairline dividers and registration crosshairs.
 * `public/images/hero-student.jpg` — Pristine high-definition editorial portrait of the smiling schoolgirl in campus courtyard.
 
 ---
