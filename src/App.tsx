@@ -4,6 +4,7 @@ import { GlobalAtmosphere } from '@/components/layout/GlobalAtmosphere.tsx'
 import { Header } from '@/components/layout/Header.tsx'
 import { HeroSection } from '@/components/sections/HeroSection.tsx'
 import { AboutSection } from '@/components/sections/AboutSection.tsx'
+import { FirstYearsSection } from '@/components/sections/FirstYearsSection.tsx'
 
 export function App() {
   const [activeSection, setActiveSection] = useState('01')
@@ -14,10 +15,19 @@ export function App() {
 
     // Observe active section for header indicator
     const handleScroll = () => {
+      const approachEl = document.getElementById('approach')
+      if (approachEl) {
+        const rect = approachEl.getBoundingClientRect()
+        if (rect.top <= 140 && rect.bottom >= 140) {
+          setActiveSection('03')
+          return
+        }
+      }
+
       const aboutEl = document.getElementById('about')
       if (aboutEl) {
         const rect = aboutEl.getBoundingClientRect()
-        if (rect.top <= 120 && rect.bottom >= 120) {
+        if (rect.top <= 140 && rect.bottom >= 140) {
           setActiveSection('02')
           return
         }
@@ -48,6 +58,9 @@ export function App() {
 
         {/* Section 02: About Our School */}
         <AboutSection />
+
+        {/* Section 03: The First Years Matter */}
+        <FirstYearsSection />
       </main>
     </div>
   )

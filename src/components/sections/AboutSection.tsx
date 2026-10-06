@@ -212,15 +212,11 @@ export function AboutSection() {
               </div>
             </div>
 
-            {/* Bottom: Human Handwritten Script Accent */}
-            <div className="about-script-note self-end lg:self-end mt-4 sm:mt-6 lg:mt-auto pt-6 text-right">
-              <img
-                src="/images/about-note-script.png"
-                alt={ABOUT_CONTENT.handwrittenNote}
-                loading="lazy"
-                decoding="async"
-                className="w-[135px] sm:w-[155px] 2xl:w-[170px] inline-block opacity-80 select-none pointer-events-none transition-opacity duration-300 hover:opacity-100"
-              />
+            {/* Bottom: Human Handwritten Script Accent (Selectable font-script typography) */}
+            <div className="about-script-note self-end lg:self-end mt-4 sm:mt-6 lg:mt-auto pt-4 sm:pt-6 text-right max-w-[210px] 2xl:max-w-[240px]">
+              <p className="font-script text-[1.45rem] sm:text-[1.65rem] 2xl:text-[1.85rem] text-[#82561F] font-semibold leading-[1.2] -rotate-2 select-text transition-colors duration-200 hover:text-[#063B31]">
+                {ABOUT_CONTENT.handwrittenNote}
+              </p>
             </div>
           </div>
 

@@ -22,48 +22,39 @@ export function GlobalAtmosphere() {
       {/* Base Warm Ivory Paper Foundation */}
       <div className="absolute inset-0 bg-[#F5F1E8]" />
 
-      {/* Layer A: Muted Botanical Sage Wash (Lower-Left & Mid-Left foliage sweep) */}
+      {/* Layer A: Primary Botanical Sage Field (Sweeps lower-left -> center -> upper-center) */}
       <div
-        className="atmosphere-layer-a absolute -top-[15vh] -left-[15vw] w-[130vw] h-[130vh] pointer-events-none"
+        className="atmosphere-layer-a absolute -top-[45vh] -left-[45vw] w-[190vw] h-[190vh] pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 70% 60% at 10% 85%, rgba(118, 150, 128, 0.42) 0%, rgba(142, 172, 150, 0.26) 35%, rgba(180, 200, 185, 0.10) 65%, transparent 82%)',
+            'radial-gradient(ellipse 65% 55% at 20% 80%, rgba(118, 150, 128, 0.42) 0%, rgba(142, 172, 150, 0.26) 35%, rgba(180, 200, 185, 0.10) 65%, transparent 85%)',
         }}
       />
 
-      {/* Layer A-2: Supplementary Sage Foliage Accent (Rising up left margin) */}
+      {/* Layer B: Primary Luminous Champagne Sunlight (Cascades upper-right -> center-right -> lower-right) */}
       <div
-        className="atmosphere-layer-c absolute -top-[15vh] -left-[15vw] w-[130vw] h-[130vh] pointer-events-none"
+        className="atmosphere-layer-b absolute -top-[45vh] -left-[45vw] w-[190vw] h-[190vh] pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 55% 65% at 0% 55%, rgba(130, 160, 140, 0.30) 0%, rgba(160, 185, 168, 0.15) 45%, transparent 75%)',
+            'radial-gradient(ellipse 60% 70% at 86% 18%, rgba(226, 184, 122, 0.46) 0%, rgba(238, 204, 150, 0.28) 40%, rgba(246, 224, 182, 0.12) 68%, transparent 88%)',
         }}
       />
 
-      {/* Layer B: Luminous Champagne Sunlight (Upper-Right & Right Column golden glow) */}
+      {/* Layer C: Delicate Golden-Ivory Morning Accent (Drifts top-left -> center -> right) */}
       <div
-        className="atmosphere-layer-b absolute -top-[15vh] -left-[15vw] w-[130vw] h-[130vh] pointer-events-none"
+        className="atmosphere-layer-c absolute -top-[45vh] -left-[45vw] w-[190vw] h-[190vh] pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 65% 75% at 94% 24%, rgba(226, 184, 122, 0.46) 0%, rgba(238, 204, 150, 0.28) 40%, rgba(246, 224, 182, 0.12) 68%, transparent 88%)',
+            'radial-gradient(ellipse 50% 45% at 14% 18%, rgba(230, 198, 144, 0.30) 0%, rgba(242, 220, 182, 0.12) 50%, transparent 75%)',
         }}
       />
 
-      {/* Layer B-2: Lower-Right Champagne Sunlight Pool */}
+      {/* Layer D: Secondary Botanical Foliage Accent (Glides bottom-right -> bottom-center -> center) */}
       <div
-        className="atmosphere-layer-d absolute -top-[15vh] -left-[15vw] w-[130vw] h-[130vh] pointer-events-none"
+        className="atmosphere-layer-d absolute -top-[45vh] -left-[45vw] w-[190vw] h-[190vh] pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse 60% 55% at 92% 82%, rgba(228, 192, 134, 0.36) 0%, rgba(240, 212, 165, 0.18) 45%, transparent 78%)',
-        }}
-      />
-
-      {/* Layer C: Delicate Golden-Ivory Morning Accent (Top-Left) */}
-      <div
-        className="atmosphere-layer-c absolute -top-[15vh] -left-[15vw] w-[130vw] h-[130vh] pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(ellipse 50% 40% at 8% 8%, rgba(230, 198, 144, 0.28) 0%, rgba(242, 220, 182, 0.10) 50%, transparent 75%)',
+            'radial-gradient(ellipse 55% 50% at 82% 84%, rgba(130, 160, 140, 0.32) 0%, rgba(160, 185, 168, 0.16) 45%, transparent 78%)',
         }}
       />
 
@@ -72,7 +63,7 @@ export function GlobalAtmosphere() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'linear-gradient(135deg, rgba(238, 206, 152, 0.14) 0%, transparent 35%, transparent 65%, rgba(135, 166, 145, 0.16) 100%)',
+            'linear-gradient(135deg, rgba(238, 206, 152, 0.12) 0%, transparent 35%, transparent 65%, rgba(135, 166, 145, 0.14) 100%)',
         }}
       />
     </div>

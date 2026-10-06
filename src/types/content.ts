@@ -64,3 +64,25 @@ export interface AboutContent {
   }
 }
 
+export interface FirstYearsPillar {
+  index: string
+  titleLine1: string
+  titleLine2: string
+  description: string
+  actionHref?: string
+  image: {
+    src: string
+    alt: string
+  }
+}
+
+export interface FirstYearsContent {
+  chapterIndex: string
+  microLabel: string
+  pillars: FirstYearsPillar[]
+  scriptNote: {
+    lines: string[]
+    fullText: string
+    src?: string
+  }
+}
