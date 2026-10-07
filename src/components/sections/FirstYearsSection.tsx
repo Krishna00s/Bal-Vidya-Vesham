@@ -113,27 +113,19 @@ export function FirstYearsSection() {
         <div className="first-years-rule w-full h-[1px] bg-[rgba(245,241,232,0.12)] mb-10 sm:mb-12 lg:mb-14" aria-hidden="true" />
 
         {/* Editorial Pillars + Handwritten Accent Row */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-12 lg:gap-y-0 lg:gap-x-6 2xl:gap-x-8 items-start relative">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.18fr_1.18fr_0.88fr_auto] gap-y-12 lg:gap-y-0 lg:gap-x-5 xl:gap-x-7 2xl:gap-x-9 items-start relative">
           {FIRST_YEARS_CONTENT.pillars.map((pillar, idx) => {
-            // Grid columns: 01 takes 4 cols, 02 takes 3 cols, 03 takes 3 cols, script takes 2 cols (total: 12)
-            const colSpanClass =
-              idx === 0
-                ? 'lg:col-span-4'
-                : idx === 1
-                ? 'lg:col-span-3'
-                : 'lg:col-span-3'
-
             const isPortrait = idx === 2
 
             return (
               <div
                 key={pillar.index}
-                className={`first-years-pillar ${colSpanClass} flex flex-col justify-between self-stretch`}
+                className="first-years-pillar flex flex-col justify-between self-stretch"
               >
                 {/* Pillar Top Header & Content Group */}
                 <div className="flex items-start gap-3.5 sm:gap-4 lg:gap-3 xl:gap-4 2xl:gap-5">
                   {/* Left sub-column: Number + Serif Headline + Action Arrow */}
-                  <div className="flex flex-col justify-between shrink-0 min-w-[78px] sm:min-w-[95px] lg:min-w-[78px] xl:min-w-[90px] 2xl:min-w-[105px] self-stretch">
+                  <div className="flex flex-col justify-between shrink-0 min-w-[78px] sm:min-w-[95px] lg:min-w-[76px] xl:min-w-[88px] 2xl:min-w-[102px] self-stretch">
                     <div>
                       {/* Pillar Index */}
                       <span className="font-mono text-xl sm:text-2xl 2xl:text-[26px] font-bold text-[#F5F1E8] leading-none block mb-2 sm:mb-3">
@@ -165,8 +157,8 @@ export function FirstYearsSection() {
                     <div
                       className={`first-years-photo-frame relative border border-[rgba(245,241,232,0.16)] bg-[#04261F] overflow-hidden rounded-[2px] shadow-[0_6px_20px_rgba(0,0,0,0.3)] ${
                         isPortrait
-                          ? 'aspect-[3.5/4.5] max-w-[160px] sm:max-w-[185px] lg:max-w-[150px] xl:max-w-[175px] 2xl:max-w-[200px]'
-                          : 'aspect-[4/3] max-w-[220px] sm:max-w-[250px] lg:max-w-[185px] xl:max-w-[220px] 2xl:max-w-[260px] w-full'
+                          ? 'aspect-[3.5/4.5] max-w-[160px] sm:max-w-[185px] lg:max-w-[155px] xl:max-w-[185px] 2xl:max-w-[215px]'
+                          : 'aspect-[4/3] max-w-[230px] sm:max-w-[260px] lg:max-w-[215px] xl:max-w-[255px] 2xl:max-w-[290px] w-full'
                       }`}
                     >
                       <img
@@ -179,7 +171,7 @@ export function FirstYearsSection() {
                     </div>
 
                     {/* Description Text */}
-                    <p className="font-sans text-[12px] sm:text-[13px] 2xl:text-[14px] text-[#CAD3CE] leading-[1.6] mt-3 sm:mt-4 max-w-[240px]">
+                    <p className="font-sans text-[12px] sm:text-[13px] 2xl:text-[14px] text-[#CAD3CE] leading-[1.6] mt-3 sm:mt-4 max-w-[250px]">
                       {pillar.description}
                     </p>
                   </div>
@@ -188,8 +180,8 @@ export function FirstYearsSection() {
             )
           })}
 
-          {/* Right Column: Authentic Handwritten Script Note (Selectable font-script typography) */}
-          <div className="first-years-script hidden lg:flex lg:col-span-2 xl:col-span-2 flex-col justify-center items-start pl-2 lg:pl-3 2xl:pl-5 self-center pr-2">
+          {/* Right Column: Authentic Handwritten Script Note (Selectable font-script typography, shifted right) */}
+          <div className="first-years-script hidden lg:flex flex-col justify-center items-start self-center pl-2 xl:pl-4 2xl:pl-6 pr-0 lg:translate-x-1 xl:translate-x-2">
             <p className="font-script text-[1.18rem] xl:text-[1.28rem] 2xl:text-[1.42rem] text-[#F5E2BE] font-semibold leading-[1.22] -rotate-2 select-text tracking-wide transition-colors duration-200 hover:text-[#FFFFFF]">
               {FIRST_YEARS_CONTENT.scriptNote.lines.map((line, lIdx) => (
                 <span key={lIdx} className="block whitespace-nowrap">
