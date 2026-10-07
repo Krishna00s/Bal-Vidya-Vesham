@@ -22,6 +22,13 @@ export interface SchoolMetadata {
   affiliationNote: string
 }
 
+export interface HeroImageItem {
+  src: string
+  alt: string
+  caption: string
+  role: 'primary' | 'environmental' | 'emotional' | 'learning'
+}
+
 export interface HeroContent {
   microLabel: string
   schoolNamePrimary: string
@@ -39,6 +46,12 @@ export interface HeroContent {
   chapterIndex: string
   chapterTheme: string
   scrollIndicator: string
+  photography: {
+    primary: HeroImageItem
+    environmental: HeroImageItem
+    emotional: HeroImageItem
+    learning: HeroImageItem
+  }
 }
 
 export interface AboutContent {

@@ -37,6 +37,32 @@ export const HERO_CONTENT: HeroContent = {
   chapterIndex: '01',
   chapterTheme: 'SMALL BEGINNINGS ENDLESS POSSIBILITIES',
   scrollIndicator: 'SCROLL TO EXPLORE',
+  photography: {
+    primary: {
+      src: '/images/hero-campus-exterior.jpg',
+      alt: 'Bal Vidyavasham school exterior building featuring prominent Junior Section signage and architectural entrance',
+      caption: 'CAMPUS ELEVATION & SIGNAGE',
+      role: 'primary',
+    },
+    environmental: {
+      src: '/images/hero-campus-courtyard.jpg',
+      alt: 'Bal Vidyavasham campus courtyard with bougainvillea blossoms, palm trees and covered walkways',
+      caption: 'BOTANICAL GROUNDS',
+      role: 'environmental',
+    },
+    emotional: {
+      src: '/images/hero-students-assembly.jpg',
+      alt: 'Students assembled on Bal Vidyavasham school grounds taking the morning pledge with extended hands',
+      caption: 'MORNING ASSEMBLY',
+      role: 'emotional',
+    },
+    learning: {
+      src: '/images/hero-classroom-study.jpg',
+      alt: 'Students engaged in classroom study at wooden desks with notebooks at Bal Vidyavasham',
+      caption: 'DOC. 04 / ACTIVE CLASSROOM',
+      role: 'learning',
+    },
+  },
 }
 
 export const ABOUT_CONTENT: AboutContent = {

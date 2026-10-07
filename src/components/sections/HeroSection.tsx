@@ -12,14 +12,22 @@ gsap.registerPlugin(ScrollTrigger)
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
-  const imageRef = useRef<HTMLImageElement>(null)
+  const mainFrameRef = useRef<HTMLDivElement>(null)
+  const mainImageRef = useRef<HTMLImageElement>(null)
+  const envFrameRef = useRef<HTMLDivElement>(null)
+  const envImageRef = useRef<HTMLImageElement>(null)
+  const assemblyFrameRef = useRef<HTMLDivElement>(null)
+  const assemblyImageRef = useRef<HTMLImageElement>(null)
+  const classroomFrameRef = useRef<HTMLDivElement>(null)
+  const classroomImageRef = useRef<HTMLImageElement>(null)
+
   const prefersReducedMotion = usePrefersReducedMotion()
 
   useEffect(() => {
     if (!sectionRef.current) return
 
     const ctx = gsap.context(() => {
-      // 1. Staggered entrance animation
+      // 1. Initial editorial entrance sequence
       if (!prefersReducedMotion) {
         const tl = gsap.timeline({
           defaults: {
@@ -27,6 +35,7 @@ export function HeroSection() {
           },
         })
 
+        // Independent typography entrance
         tl.from('.hero-eyebrow', {
           opacity: 0,
           y: 14,
@@ -36,37 +45,89 @@ export function HeroSection() {
             '.hero-heading-line',
             {
               opacity: 0,
-              y: 35,
+              y: 32,
               stagger: 0.12,
-              duration: 0.85,
+              duration: 0.8,
             },
             '-=0.35',
           )
-          .from(
-            '.hero-image-frame',
+
+        // Primary dominant hero photograph clip-path reveal
+        if (mainFrameRef.current) {
+          tl.fromTo(
+            mainFrameRef.current,
             {
+              clipPath: 'inset(0% 0% 100% 0%)',
+              opacity: 0.15,
+            },
+            {
+              clipPath: 'inset(0% 0% 0% 0%)',
+              opacity: 1,
+              duration: 1.1,
+              ease: 'power3.inOut',
+            },
+            '-=0.55',
+          )
+        }
+
+        // Supporting photographs enter with small opposing translations
+        if (envFrameRef.current) {
+          tl.from(
+            envFrameRef.current,
+            {
+              x: -24,
+              y: 18,
               opacity: 0,
-              scale: 0.985,
-              duration: 1.0,
-              ease: 'expo.out',
+              duration: 0.85,
+              ease: 'power2.out',
+            },
+            '-=0.75',
+          )
+        }
+
+        if (assemblyFrameRef.current) {
+          tl.from(
+            assemblyFrameRef.current,
+            {
+              x: 24,
+              y: 18,
+              opacity: 0,
+              duration: 0.85,
+              ease: 'power2.out',
             },
             '-=0.7',
           )
-          .from(
-            '.hero-statement',
+        }
+
+        if (classroomFrameRef.current) {
+          tl.from(
+            classroomFrameRef.current,
             {
+              y: 22,
               opacity: 0,
-              y: 18,
               duration: 0.75,
+              ease: 'power2.out',
             },
             '-=0.6',
           )
+        }
+
+        // Narrative voice & actions
+        tl.from(
+          '.hero-statement',
+          {
+            opacity: 0,
+            y: 16,
+            duration: 0.7,
+          },
+          '-=0.6',
+        )
           .from(
             '.hero-copy',
             {
               opacity: 0,
-              y: 16,
-              duration: 0.7,
+              y: 14,
+              duration: 0.65,
             },
             '-=0.55',
           )
@@ -74,7 +135,7 @@ export function HeroSection() {
             '.hero-cta',
             {
               opacity: 0,
-              y: 14,
+              y: 12,
               duration: 0.6,
             },
             '-=0.5',
@@ -87,17 +148,12 @@ export function HeroSection() {
             },
             '-=0.6',
           )
-      }
 
-      // 2. Scroll-linked internal photographic reveal (GSAP ScrollTrigger scrub)
-      // Overscanned image source translates upwards inside structurally fixed frame,
-      // revealing lower region as user scrolls down and reversing naturally on scroll up.
-      if (!prefersReducedMotion && imageRef.current && sectionRef.current) {
-        gsap.fromTo(
-          imageRef.current,
-          { yPercent: 0 },
-          {
-            yPercent: -14,
+        // 2. Multi-rate scroll parallax & spatial settling
+        // Main photograph subtle internal parallax
+        if (mainImageRef.current && sectionRef.current) {
+          gsap.to(mainImageRef.current, {
+            yPercent: -8,
             ease: 'none',
             scrollTrigger: {
               trigger: sectionRef.current,
@@ -106,8 +162,61 @@ export function HeroSection() {
               scrub: 0.6,
               invalidateOnRefresh: true,
             },
-          },
-        )
+          })
+        }
+
+        // Environmental courtyard drift (Rate A)
+        if (envFrameRef.current && sectionRef.current) {
+          gsap.to(envFrameRef.current, {
+            yPercent: -14,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top top',
+              end: 'bottom top',
+              scrub: 0.7,
+              invalidateOnRefresh: true,
+            },
+          })
+        }
+
+        // Emotional assembly portrait drift (Rate B)
+        if (assemblyFrameRef.current && sectionRef.current) {
+          gsap.to(assemblyFrameRef.current, {
+            yPercent: -22,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top top',
+              end: 'bottom top',
+              scrub: 0.8,
+              invalidateOnRefresh: true,
+            },
+          })
+        }
+
+        // Classroom study storytelling transition into Section 02
+        if (classroomFrameRef.current && sectionRef.current) {
+          gsap.fromTo(
+            classroomFrameRef.current,
+            {
+              opacity: 0.45,
+              yPercent: 0,
+            },
+            {
+              opacity: 1,
+              yPercent: -28,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: 'top top',
+                end: 'bottom top',
+                scrub: 0.75,
+                invalidateOnRefresh: true,
+              },
+            },
+          )
+        }
       }
     }, sectionRef)
 
@@ -124,12 +233,12 @@ export function HeroSection() {
       ref={sectionRef}
       id="home"
       aria-label="Bal Vidyavasham School Introduction"
-      className="relative w-full overflow-hidden bg-transparent border-b border-[rgba(20,32,31,0.14)] min-h-[calc(100svh-3.5rem)] sm:min-h-[calc(100svh-4rem)] lg:h-[calc(100svh-4rem)] lg:min-h-[580px] flex flex-col justify-between"
+      className="relative w-full overflow-hidden bg-transparent border-b border-[rgba(20,32,31,0.14)] min-h-[calc(100svh-3.5rem)] sm:min-h-[calc(100svh-4rem)] lg:min-h-[calc(100svh-4rem)] lg:max-h-[1080px] flex flex-col justify-between"
     >
       {/* Background Architectural Grid Overlay */}
       <GridOverlay />
 
-      <Container className="relative z-10 h-full flex flex-col justify-center py-4 sm:py-6 lg:py-6 2xl:py-8">
+      <Container className="relative z-10 h-full flex flex-col justify-center py-5 sm:py-6 lg:py-6 2xl:py-8">
         {/* Single Unified Responsive Editorial Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-6 sm:gap-y-8 lg:gap-y-0 h-full items-stretch relative">
           
@@ -157,8 +266,8 @@ export function HeroSection() {
             <div className="mt-2 w-12 sm:w-16 h-[1px] bg-[rgba(20,32,31,0.2)]" aria-hidden="true" />
           </div>
 
-          {/* Architectural Headline BAL VIDYAVASHAM (Spans Col 1 to 10 on Desktop across photo) */}
-          <div className="order-2 lg:col-start-1 lg:col-end-10 lg:row-start-2 z-20 self-center py-1 sm:py-2">
+          {/* Architectural Headline BAL VIDYAVASHAM (Col 1 to 5 / spans to 6 on Desktop) */}
+          <div className="order-2 lg:col-start-1 lg:col-end-6 lg:row-start-2 z-20 self-center py-1 sm:py-2">
             <h1 className="hero-title-mobile lg:hero-title-desktop font-sans font-bold uppercase tracking-[-0.038em] lg:tracking-[-0.045em] text-[#14201F] select-none">
               <span className="hero-heading-line block">
                 {HERO_CONTENT.schoolNamePrimary}
@@ -169,22 +278,72 @@ export function HeroSection() {
             </h1>
           </div>
 
-          {/* Hero Photograph (Col 6 to 11 on Desktop; placed naturally in mobile reading flow) */}
-          <div className="order-3 lg:col-start-6 lg:col-end-12 lg:row-start-1 lg:row-end-4 relative z-10 border border-[rgba(20,32,31,0.12)] lg:border-t-0 lg:border-b-0 lg:border-l lg:border-r bg-[#EEE9DD] overflow-hidden aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto h-auto lg:h-full min-h-[260px] sm:min-h-[320px] lg:min-h-0 hero-image-frame">
-            <img
-              ref={imageRef}
-              src="/images/hero-student.jpg"
-              alt="Joyful young student smiling in school uniform at Bal Vidyavasham campus courtyard"
-              className="hero-image-source absolute top-0 left-0 w-full h-[120%] object-cover object-[center_12%] lg:object-[center_18%] will-change-transform pointer-events-none select-none"
-              loading="eager"
-              fetchPriority="high"
-            />
+          {/* Photographic Composition (Cols 6 to 11 on Desktop; asymmetric editorial flow on Mobile) */}
+          <div className="order-3 lg:col-start-6 lg:col-end-12 lg:row-start-1 lg:row-end-4 relative z-10 w-full h-full min-h-[380px] sm:min-h-[460px] lg:min-h-[540px] xl:min-h-[580px] flex flex-col justify-start">
+            
+            {/* 1. Primary Hero Photograph: Exterior & Signage (slider1.jpg) */}
+            <div
+              ref={mainFrameRef}
+              className="hero-main-frame relative z-10 w-full lg:w-[88%] aspect-[16/10] sm:aspect-[16/9.6] border border-[rgba(20,32,31,0.14)] bg-[#EEE9DD] overflow-hidden shadow-[0_4px_24px_rgba(20,32,31,0.04)]"
+            >
+              <img
+                ref={mainImageRef}
+                src={HERO_CONTENT.photography.primary.src}
+                alt={HERO_CONTENT.photography.primary.alt}
+                className="absolute -top-[5%] left-0 w-full h-[115%] object-cover object-[center_46%] will-change-transform pointer-events-none select-none"
+                loading="eager"
+                fetchPriority="high"
+              />
+              <div className="absolute bottom-0 left-0 z-20 font-mono text-[8px] sm:text-[8.5px] uppercase tracking-[0.16em] text-[#14201F]/85 bg-[#F5F1E8]/90 backdrop-blur-xs px-2.5 py-1 border-t border-r border-[rgba(20,32,31,0.12)] select-none">
+                {HERO_CONTENT.photography.primary.caption}
+              </div>
+            </div>
+
+            {/* Supporting Images Duo: Courtyard & Assembly */}
+            <div className="flex flex-row items-stretch gap-2.5 sm:gap-3.5 mt-2.5 sm:mt-3.5 w-full lg:contents">
+              
+              {/* 2. Secondary Environmental Photograph: Botanical Grounds (slider2.jpg) */}
+              <div
+                ref={envFrameRef}
+                className="hero-env-frame relative lg:absolute lg:bottom-12 lg:left-0 z-20 w-[57%] lg:w-[48%] xl:w-[50%] aspect-[4/3] sm:aspect-[16/11] border border-[rgba(20,32,31,0.16)] bg-[#EEE9DD] overflow-hidden shadow-[0_8px_30px_rgba(20,32,31,0.07)]"
+              >
+                <img
+                  ref={envImageRef}
+                  src={HERO_CONTENT.photography.environmental.src}
+                  alt={HERO_CONTENT.photography.environmental.alt}
+                  className="absolute -top-[5%] left-0 w-full h-[115%] object-cover object-[24%_45%] will-change-transform pointer-events-none select-none"
+                  loading="eager"
+                />
+                <div className="absolute bottom-0 left-0 z-20 font-mono text-[7.5px] sm:text-[8px] uppercase tracking-[0.15em] text-[#14201F]/85 bg-[#F5F1E8]/90 backdrop-blur-xs px-2 py-0.5 border-t border-r border-[rgba(20,32,31,0.12)] select-none">
+                  {HERO_CONTENT.photography.environmental.caption}
+                </div>
+              </div>
+
+              {/* 3. Emotional Portrait Photograph: Morning Assembly (slider3.jpg) */}
+              <div
+                ref={assemblyFrameRef}
+                className="hero-assembly-frame relative lg:absolute lg:top-28 lg:right-0 z-25 w-[43%] lg:w-[36%] xl:w-[38%] aspect-[3/4] border border-[rgba(20,32,31,0.16)] bg-[#EEE9DD] overflow-hidden shadow-[0_12px_36px_rgba(20,32,31,0.08)]"
+              >
+                <img
+                  ref={assemblyImageRef}
+                  src={HERO_CONTENT.photography.emotional.src}
+                  alt={HERO_CONTENT.photography.emotional.alt}
+                  className="absolute -top-[5%] left-0 w-full h-[115%] object-cover object-[28%_42%] will-change-transform pointer-events-none select-none"
+                  loading="eager"
+                />
+                <div className="absolute bottom-0 right-0 z-20 font-mono text-[7.5px] sm:text-[8px] uppercase tracking-[0.15em] text-[#14201F]/85 bg-[#F5F1E8]/90 backdrop-blur-xs px-2 py-0.5 border-t border-l border-[rgba(20,32,31,0.12)] select-none">
+                  {HERO_CONTENT.photography.emotional.caption}
+                </div>
+              </div>
+
+            </div>
+
           </div>
 
           {/* Narrative Statement, Copy & Primary Action (Col 1 to 5 on Desktop) */}
           <div className="order-4 lg:col-start-1 lg:col-end-6 lg:row-start-3 z-20 self-end pt-2 sm:pt-3 lg:pt-4 flex flex-col gap-3.5 sm:gap-4 2xl:gap-5">
             {/* Secondary Editorial Voice: Serif Statement */}
-            <p className="hero-statement font-serif italic text-[clamp(1.35rem,2.4vw,2.3rem)] font-medium text-[#14201F] leading-[1.12] tracking-tight max-w-[360px] 2xl:max-w-[420px]">
+            <p className="hero-statement font-serif italic text-[clamp(1.35rem,2.3vw,2.25rem)] font-medium text-[#14201F] leading-[1.14] tracking-tight max-w-[380px] 2xl:max-w-[440px]">
               {HERO_CONTENT.statement}
             </p>
 
@@ -219,8 +378,26 @@ export function HeroSection() {
             </div>
           </div>
 
+          {/* 4. Learning Photograph: Active Classroom (slider4.jpg) */}
+          {/* Positioned at bottom threshold to visually transition into Section 02 */}
+          <div
+            ref={classroomFrameRef}
+            className="hero-classroom-frame order-5 lg:order-none lg:col-start-6 lg:col-end-12 lg:row-start-3 self-end z-30 w-full lg:w-[46%] xl:w-[48%] aspect-[16/8] sm:aspect-[16/7.5] border border-[rgba(20,32,31,0.16)] bg-[#EEE9DD] overflow-hidden shadow-[0_8px_24px_rgba(20,32,31,0.06)] mt-4 lg:mt-0 lg:translate-x-14 lg:translate-y-5"
+          >
+            <img
+              ref={classroomImageRef}
+              src={HERO_CONTENT.photography.learning.src}
+              alt={HERO_CONTENT.photography.learning.alt}
+              className="absolute -top-[5%] left-0 w-full h-[120%] object-cover object-[32%_58%] will-change-transform pointer-events-none select-none"
+              loading="lazy"
+            />
+            <div className="absolute bottom-0 right-0 z-20 font-mono text-[7.5px] sm:text-[8px] uppercase tracking-[0.15em] text-[#14201F]/85 bg-[#F5F1E8]/90 backdrop-blur-xs px-2 py-0.5 border-t border-l border-[rgba(20,32,31,0.12)] select-none">
+              {HERO_CONTENT.photography.learning.caption}
+            </div>
+          </div>
+
           {/* Right Sidebar Metadata (Col 12 on Desktop) */}
-          <div className="order-5 hidden lg:flex lg:col-start-12 lg:col-end-13 lg:row-start-1 lg:row-end-4 relative z-20 flex flex-col justify-between items-center py-4 pl-3 pr-1 text-center hero-sidebar">
+          <div className="order-6 hidden lg:flex lg:col-start-12 lg:col-end-13 lg:row-start-1 lg:row-end-4 relative z-20 flex flex-col justify-between items-center py-4 pl-3 pr-1 text-center hero-sidebar">
             {/* Section 01 Numeral and stacked micro metadata */}
             <div className="flex flex-col items-center">
               <span className="font-mono text-3xl 2xl:text-4xl font-bold tracking-tight text-[#14201F]">
