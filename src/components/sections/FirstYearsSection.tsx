@@ -113,7 +113,7 @@ export function FirstYearsSection() {
         <div className="first-years-rule w-full h-[1px] bg-[rgba(245,241,232,0.12)] mb-10 sm:mb-12 lg:mb-14" aria-hidden="true" />
 
         {/* Editorial Pillars + Handwritten Accent Row */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1.18fr_1.18fr_0.88fr_auto] gap-y-12 lg:gap-y-0 lg:gap-x-5 xl:gap-x-7 2xl:gap-x-9 items-start relative">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.12fr_1.12fr_0.98fr_auto] gap-y-12 lg:gap-y-0 lg:gap-x-5 xl:gap-x-7 2xl:gap-x-9 items-start relative">
           {FIRST_YEARS_CONTENT.pillars.map((pillar, idx) => {
             const isPortrait = idx === 2
 
@@ -157,7 +157,7 @@ export function FirstYearsSection() {
                     <div
                       className={`first-years-photo-frame relative border border-[rgba(245,241,232,0.16)] bg-[#04261F] overflow-hidden rounded-[2px] shadow-[0_6px_20px_rgba(0,0,0,0.3)] ${
                         isPortrait
-                          ? 'aspect-[3.5/4.5] max-w-[160px] sm:max-w-[185px] lg:max-w-[155px] xl:max-w-[185px] 2xl:max-w-[215px]'
+                          ? 'aspect-[3.5/4.5] max-w-[180px] sm:max-w-[205px] lg:max-w-[180px] xl:max-w-[215px] 2xl:max-w-[245px]'
                           : 'aspect-[4/3] max-w-[230px] sm:max-w-[260px] lg:max-w-[215px] xl:max-w-[255px] 2xl:max-w-[290px] w-full'
                       }`}
                     >
@@ -181,7 +181,7 @@ export function FirstYearsSection() {
           })}
 
           {/* Right Column: Authentic Handwritten Script Note (Selectable font-script typography, shifted right) */}
-          <div className="first-years-script hidden lg:flex flex-col justify-center items-start self-center pl-2 xl:pl-4 2xl:pl-6 pr-0 lg:translate-x-1 xl:translate-x-2">
+          <div className="first-years-script hidden lg:flex flex-col justify-center items-start self-center pl-2 xl:pl-3 2xl:pl-5 pr-0 lg:translate-x-1.5 xl:translate-x-2.5">
             <p className="font-script text-[1.18rem] xl:text-[1.28rem] 2xl:text-[1.42rem] text-[#F5E2BE] font-semibold leading-[1.22] -rotate-2 select-text tracking-wide transition-colors duration-200 hover:text-[#FFFFFF]">
               {FIRST_YEARS_CONTENT.scriptNote.lines.map((line, lIdx) => (
                 <span key={lIdx} className="block whitespace-nowrap">
