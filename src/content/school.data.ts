@@ -86,7 +86,7 @@ export const FIRST_YEARS_CONTENT: FirstYearsContent = {
       actionHref: '#kind-hearts',
       image: {
         src: '/images/first-years-kind-hearts.jpg',
-        alt: 'Two cheerful young elementary school girls sharing an encouraging smile in school uniform',
+        alt: 'Two cheerful young elementary school students in uniform sharing an encouraging moment at their classroom desk',
       },
     },
     {
@@ -108,7 +108,8 @@ export const FIRST_YEARS_CONTENT: FirstYearsContent = {
       'that shape',
       'curious minds,',
       'kind hearts and',
-      'confident individuals.',
+      'confident',
+      'individuals.',
     ],
     fullText:
       'Because these are the years that shape curious minds, kind hearts and confident individuals.',
