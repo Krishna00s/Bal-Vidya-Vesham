@@ -12,6 +12,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null)
+  const titleRef = useRef<HTMLDivElement>(null)
   const mainFrameRef = useRef<HTMLDivElement>(null)
   const mainImageRef = useRef<HTMLImageElement>(null)
   const envFrameRef = useRef<HTMLDivElement>(null)
@@ -35,48 +36,47 @@ export function HeroSection() {
           },
         })
 
-        // Independent typography entrance
+        // Independent typography eyebrow entrance
         tl.from('.hero-eyebrow', {
           opacity: 0,
-          y: 14,
-          duration: 0.6,
+          y: 12,
+          duration: 0.55,
         })
+          // Monumental title restrained vertical reveal
           .from(
             '.hero-heading-line',
             {
               opacity: 0,
-              y: 32,
+              y: 42,
               stagger: 0.12,
-              duration: 0.8,
+              duration: 0.85,
             },
-            '-=0.35',
+            '-=0.3',
           )
 
-        // Primary dominant hero photograph clip-path reveal
+        // Dominant primary hero photograph clip-path reveal
         if (mainFrameRef.current) {
           tl.fromTo(
             mainFrameRef.current,
             {
               clipPath: 'inset(0% 0% 100% 0%)',
-              opacity: 0.15,
             },
             {
               clipPath: 'inset(0% 0% 0% 0%)',
-              opacity: 1,
-              duration: 1.1,
+              duration: 1.15,
               ease: 'power3.inOut',
             },
-            '-=0.55',
+            '-=0.65',
           )
         }
 
-        // Supporting photographs enter with small opposing translations
+        // Supporting photographs enter with subtle opposing translations (never faded)
         if (envFrameRef.current) {
           tl.from(
             envFrameRef.current,
             {
-              x: -24,
-              y: 18,
+              x: -22,
+              y: 20,
               opacity: 0,
               duration: 0.85,
               ease: 'power2.out',
@@ -89,8 +89,8 @@ export function HeroSection() {
           tl.from(
             assemblyFrameRef.current,
             {
-              x: 24,
-              y: 18,
+              x: 22,
+              y: 20,
               opacity: 0,
               duration: 0.85,
               ease: 'power2.out',
@@ -103,9 +103,9 @@ export function HeroSection() {
           tl.from(
             classroomFrameRef.current,
             {
-              y: 22,
+              y: 24,
               opacity: 0,
-              duration: 0.75,
+              duration: 0.8,
               ease: 'power2.out',
             },
             '-=0.6',
@@ -118,7 +118,7 @@ export function HeroSection() {
           {
             opacity: 0,
             y: 16,
-            duration: 0.7,
+            duration: 0.65,
           },
           '-=0.6',
         )
@@ -127,7 +127,7 @@ export function HeroSection() {
             {
               opacity: 0,
               y: 14,
-              duration: 0.65,
+              duration: 0.6,
             },
             '-=0.55',
           )
@@ -136,7 +136,7 @@ export function HeroSection() {
             {
               opacity: 0,
               y: 12,
-              duration: 0.6,
+              duration: 0.55,
             },
             '-=0.5',
           )
@@ -153,7 +153,7 @@ export function HeroSection() {
         // Main photograph subtle internal parallax
         if (mainImageRef.current && sectionRef.current) {
           gsap.to(mainImageRef.current, {
-            yPercent: -8,
+            yPercent: -6,
             ease: 'none',
             scrollTrigger: {
               trigger: sectionRef.current,
@@ -168,7 +168,7 @@ export function HeroSection() {
         // Environmental courtyard drift (Rate A)
         if (envFrameRef.current && sectionRef.current) {
           gsap.to(envFrameRef.current, {
-            yPercent: -14,
+            yPercent: -12,
             ease: 'none',
             scrollTrigger: {
               trigger: sectionRef.current,
@@ -183,7 +183,7 @@ export function HeroSection() {
         // Emotional assembly portrait drift (Rate B)
         if (assemblyFrameRef.current && sectionRef.current) {
           gsap.to(assemblyFrameRef.current, {
-            yPercent: -22,
+            yPercent: -18,
             ease: 'none',
             scrollTrigger: {
               trigger: sectionRef.current,
@@ -195,27 +195,35 @@ export function HeroSection() {
           })
         }
 
-        // Classroom study storytelling transition into Section 02
+        // Classroom study subtle drift participating in transition toward next section
+        // Note: OPACITY REMAINS 1 AT ALL TIMES (NO FADING)
         if (classroomFrameRef.current && sectionRef.current) {
-          gsap.fromTo(
-            classroomFrameRef.current,
-            {
-              opacity: 0.45,
-              yPercent: 0,
+          gsap.to(classroomFrameRef.current, {
+            yPercent: -22,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top top',
+              end: 'bottom top',
+              scrub: 0.75,
+              invalidateOnRefresh: true,
             },
-            {
-              opacity: 1,
-              yPercent: -28,
-              ease: 'none',
-              scrollTrigger: {
-                trigger: sectionRef.current,
-                start: 'top top',
-                end: 'bottom top',
-                scrub: 0.75,
-                invalidateOnRefresh: true,
-              },
+          })
+        }
+
+        // Monumental title subtle shift
+        if (titleRef.current && sectionRef.current) {
+          gsap.to(titleRef.current, {
+            yPercent: -4,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top top',
+              end: 'bottom top',
+              scrub: 0.5,
+              invalidateOnRefresh: true,
             },
-          )
+          })
         }
       }
     }, sectionRef)
@@ -233,12 +241,12 @@ export function HeroSection() {
       ref={sectionRef}
       id="home"
       aria-label="Bal Vidyavasham School Introduction"
-      className="relative w-full overflow-hidden bg-transparent border-b border-[rgba(20,32,31,0.14)] min-h-[calc(100svh-3.5rem)] sm:min-h-[calc(100svh-4rem)] lg:min-h-[calc(100svh-4rem)] lg:max-h-[1080px] flex flex-col justify-between"
+      className="relative w-full overflow-hidden bg-transparent border-b border-[rgba(20,32,31,0.14)] min-h-[calc(100svh-3.5rem)] sm:min-h-[calc(100svh-4rem)] lg:h-[calc(100svh-4rem)] lg:min-h-[720px] lg:max-h-[1080px] flex flex-col justify-between"
     >
       {/* Background Architectural Grid Overlay */}
       <GridOverlay />
 
-      <Container className="relative z-10 h-full flex flex-col justify-center py-5 sm:py-6 lg:py-6 2xl:py-8">
+      <Container className="relative z-10 h-full flex flex-col justify-between py-5 sm:py-6 lg:py-6 xl:py-7 2xl:py-8">
         {/* Single Unified Responsive Editorial Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-y-6 sm:gap-y-8 lg:gap-y-0 h-full items-stretch relative">
           
@@ -266,9 +274,13 @@ export function HeroSection() {
             <div className="mt-2 w-12 sm:w-16 h-[1px] bg-[rgba(20,32,31,0.2)]" aria-hidden="true" />
           </div>
 
-          {/* Architectural Headline BAL VIDYAVASHAM (Col 1 to 5 / spans to 6 on Desktop) */}
-          <div className="order-2 lg:col-start-1 lg:col-end-6 lg:row-start-2 z-20 self-center py-1 sm:py-2">
-            <h1 className="hero-title-mobile lg:hero-title-desktop font-sans font-bold uppercase tracking-[-0.038em] lg:tracking-[-0.045em] text-[#14201F] select-none">
+          {/* Monumental Editorial Display Headline BAL VIDYAVASHAM */}
+          {/* Sits on Left and naturally extends horizontally across boundary toward/over photography */}
+          <div
+            ref={titleRef}
+            className="order-2 lg:col-start-1 lg:col-end-7 lg:row-start-2 z-20 self-center py-1 sm:py-2 select-none pointer-events-none"
+          >
+            <h1 className="hero-title-mobile lg:hero-title-desktop font-sans font-black uppercase text-[#14201F]">
               <span className="hero-heading-line block">
                 {HERO_CONTENT.schoolNamePrimary}
               </span>
@@ -278,13 +290,14 @@ export function HeroSection() {
             </h1>
           </div>
 
-          {/* Photographic Composition (Cols 6 to 11 on Desktop; asymmetric editorial flow on Mobile) */}
-          <div className="order-3 lg:col-start-6 lg:col-end-12 lg:row-start-1 lg:row-end-4 relative z-10 w-full h-full min-h-[380px] sm:min-h-[460px] lg:min-h-[540px] xl:min-h-[580px] flex flex-col justify-start">
+          {/* Right Photographic Composition (~60-70% visual prominence on Desktop) */}
+          <div className="order-3 lg:col-start-6 lg:col-end-12 lg:row-start-1 lg:row-end-4 relative z-10 w-full h-full min-h-[380px] sm:min-h-[460px] lg:min-h-[540px] xl:min-h-[600px] flex flex-col justify-center">
             
-            {/* 1. Primary Hero Photograph: Exterior & Signage (slider1.jpg) */}
+            {/* 1. Dominant Primary Hero Photograph: Campus Exterior & Signage (slider1.jpg) */}
+            {/* Target 50-56vw width, 62-68vh height on desktop, visually occupying majority of right half */}
             <div
               ref={mainFrameRef}
-              className="hero-main-frame relative z-10 w-full lg:w-[88%] aspect-[16/10] sm:aspect-[16/9.6] border border-[rgba(20,32,31,0.14)] bg-[#EEE9DD] overflow-hidden shadow-[0_4px_24px_rgba(20,32,31,0.04)]"
+              className="hero-main-frame relative z-10 w-full lg:w-[50vw] xl:w-[53vw] 2xl:w-[55vw] lg:h-[62vh] xl:h-[66vh] 2xl:h-[68vh] min-h-[340px] sm:min-h-[420px] lg:min-h-[500px] border border-[rgba(20,32,31,0.2)] bg-[#EEE9DD] overflow-hidden"
             >
               <img
                 ref={mainImageRef}
@@ -294,18 +307,16 @@ export function HeroSection() {
                 loading="eager"
                 fetchPriority="high"
               />
-              <div className="absolute bottom-0 left-0 z-20 font-mono text-[8px] sm:text-[8.5px] uppercase tracking-[0.16em] text-[#14201F]/85 bg-[#F5F1E8]/90 backdrop-blur-xs px-2.5 py-1 border-t border-r border-[rgba(20,32,31,0.12)] select-none">
-                {HERO_CONTENT.photography.primary.caption}
-              </div>
             </div>
 
-            {/* Supporting Images Duo: Courtyard & Assembly */}
-            <div className="flex flex-row items-stretch gap-2.5 sm:gap-3.5 mt-2.5 sm:mt-3.5 w-full lg:contents">
+            {/* Supporting Images: Courtyard & Assembly */}
+            <div className="flex flex-row items-stretch gap-2.5 sm:gap-3.5 mt-3 sm:mt-4 w-full lg:contents">
               
               {/* 2. Secondary Environmental Photograph: Botanical Grounds (slider2.jpg) */}
+              {/* Partially overlapping lower-left region of slider1 */}
               <div
                 ref={envFrameRef}
-                className="hero-env-frame relative lg:absolute lg:bottom-12 lg:left-0 z-20 w-[57%] lg:w-[48%] xl:w-[50%] aspect-[4/3] sm:aspect-[16/11] border border-[rgba(20,32,31,0.16)] bg-[#EEE9DD] overflow-hidden shadow-[0_8px_30px_rgba(20,32,31,0.07)]"
+                className="hero-env-frame relative lg:absolute lg:bottom-6 lg:-left-12 xl:lg:-left-16 2xl:lg:-left-20 z-25 w-[56%] lg:w-[19vw] xl:w-[20vw] lg:min-w-[210px] lg:max-w-[320px] aspect-[4/3] sm:aspect-[16/11] border border-[rgba(20,32,31,0.22)] bg-[#EEE9DD] overflow-hidden"
               >
                 <img
                   ref={envImageRef}
@@ -314,15 +325,13 @@ export function HeroSection() {
                   className="absolute -top-[5%] left-0 w-full h-[115%] object-cover object-[24%_45%] will-change-transform pointer-events-none select-none"
                   loading="eager"
                 />
-                <div className="absolute bottom-0 left-0 z-20 font-mono text-[7.5px] sm:text-[8px] uppercase tracking-[0.15em] text-[#14201F]/85 bg-[#F5F1E8]/90 backdrop-blur-xs px-2 py-0.5 border-t border-r border-[rgba(20,32,31,0.12)] select-none">
-                  {HERO_CONTENT.photography.environmental.caption}
-                </div>
               </div>
 
               {/* 3. Emotional Portrait Photograph: Morning Assembly (slider3.jpg) */}
+              {/* Strongest secondary image in portrait crop, overlapping lower-right of slider1 */}
               <div
                 ref={assemblyFrameRef}
-                className="hero-assembly-frame relative lg:absolute lg:top-28 lg:right-0 z-25 w-[43%] lg:w-[36%] xl:w-[38%] aspect-[3/4] border border-[rgba(20,32,31,0.16)] bg-[#EEE9DD] overflow-hidden shadow-[0_12px_36px_rgba(20,32,31,0.08)]"
+                className="hero-assembly-frame relative lg:absolute lg:-bottom-6 lg:-right-4 xl:lg:-right-6 2xl:lg:-right-8 z-30 w-[44%] lg:w-[16vw] xl:w-[17vw] lg:min-w-[180px] lg:max-w-[270px] aspect-[3/4] border border-[rgba(20,32,31,0.22)] bg-[#EEE9DD] overflow-hidden"
               >
                 <img
                   ref={assemblyImageRef}
@@ -331,9 +340,6 @@ export function HeroSection() {
                   className="absolute -top-[5%] left-0 w-full h-[115%] object-cover object-[28%_42%] will-change-transform pointer-events-none select-none"
                   loading="eager"
                 />
-                <div className="absolute bottom-0 right-0 z-20 font-mono text-[7.5px] sm:text-[8px] uppercase tracking-[0.15em] text-[#14201F]/85 bg-[#F5F1E8]/90 backdrop-blur-xs px-2 py-0.5 border-t border-l border-[rgba(20,32,31,0.12)] select-none">
-                  {HERO_CONTENT.photography.emotional.caption}
-                </div>
               </div>
 
             </div>
@@ -343,7 +349,7 @@ export function HeroSection() {
           {/* Narrative Statement, Copy & Primary Action (Col 1 to 5 on Desktop) */}
           <div className="order-4 lg:col-start-1 lg:col-end-6 lg:row-start-3 z-20 self-end pt-2 sm:pt-3 lg:pt-4 flex flex-col gap-3.5 sm:gap-4 2xl:gap-5">
             {/* Secondary Editorial Voice: Serif Statement */}
-            <p className="hero-statement font-serif italic text-[clamp(1.35rem,2.3vw,2.25rem)] font-medium text-[#14201F] leading-[1.14] tracking-tight max-w-[380px] 2xl:max-w-[440px]">
+            <p className="hero-statement font-serif italic text-[clamp(1.35rem,2.2vw,2.25rem)] font-medium text-[#14201F] leading-[1.14] tracking-tight max-w-[380px] 2xl:max-w-[440px]">
               {HERO_CONTENT.statement}
             </p>
 
@@ -380,9 +386,10 @@ export function HeroSection() {
 
           {/* 4. Learning Photograph: Active Classroom (slider4.jpg) */}
           {/* Positioned at bottom threshold to visually transition into Section 02 */}
+          {/* Note: Opacity is strictly 1 (never faded) */}
           <div
             ref={classroomFrameRef}
-            className="hero-classroom-frame order-5 lg:order-none lg:col-start-6 lg:col-end-12 lg:row-start-3 self-end z-30 w-full lg:w-[46%] xl:w-[48%] aspect-[16/8] sm:aspect-[16/7.5] border border-[rgba(20,32,31,0.16)] bg-[#EEE9DD] overflow-hidden shadow-[0_8px_24px_rgba(20,32,31,0.06)] mt-4 lg:mt-0 lg:translate-x-14 lg:translate-y-5"
+            className="hero-classroom-frame order-5 lg:order-none lg:absolute lg:-bottom-8 lg:left-[22vw] xl:lg:left-[24vw] 2xl:lg:left-[26vw] z-20 w-full lg:w-[20vw] xl:w-[21vw] lg:min-w-[220px] lg:max-w-[320px] aspect-[16/8] sm:aspect-[16/7.5] border border-[rgba(20,32,31,0.22)] bg-[#EEE9DD] overflow-hidden mt-4 lg:mt-0"
           >
             <img
               ref={classroomImageRef}
@@ -391,9 +398,6 @@ export function HeroSection() {
               className="absolute -top-[5%] left-0 w-full h-[120%] object-cover object-[32%_58%] will-change-transform pointer-events-none select-none"
               loading="lazy"
             />
-            <div className="absolute bottom-0 right-0 z-20 font-mono text-[7.5px] sm:text-[8px] uppercase tracking-[0.15em] text-[#14201F]/85 bg-[#F5F1E8]/90 backdrop-blur-xs px-2 py-0.5 border-t border-l border-[rgba(20,32,31,0.12)] select-none">
-              {HERO_CONTENT.photography.learning.caption}
-            </div>
           </div>
 
           {/* Right Sidebar Metadata (Col 12 on Desktop) */}
