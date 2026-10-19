@@ -1,307 +1,208 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @theme {
-  --color-paper: #F5F1E8;
-  --color-paper-soft: #EEE9DD;
-  --color-ink: #14201F;
-  --color-ink-soft: #4B5552;
-  --color-ink-muted: #8E9592;
-  --color-green: #063B31;
-  --color-green-deep: #022B24;
-  --color-line: rgba(20, 32, 31, 0.14);
-  --color-line-light: rgba(245, 241, 232, 0.18);
-  --color-grid: rgba(20, 32, 31, 0.05);
-  --color-grid-marker: rgba(20, 32, 31, 0.32);
-  --color-accent: #CDA66B;
+  --font-display: "Cormorant Garamond", "Newsreader", Georgia, serif;
+  --font-serif: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-script: 'Caveat', cursive;
+  /* Living Ocean Canvas Reference Palette */
+  --color-midnight: #0A1931;
+  --color-marine: #1A3D63;
+  --color-ocean: #4A7FA7;
+  --color-powder: #B3CFE5;
+  --color-porcelain: #F6FAFD;
 
-  --ease-editorial: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-tactile: cubic-bezier(0.25, 0.1, 0.25, 1);
+  /* Ocean Canvas Backgrounds & Paper Surfaces */
+  --color-ocean-tint: #EBF3F9;
+  --color-ocean-wash: #F0F5FA;
+  --color-ocean-border: #D2E3F0;
+  --color-ocean-border-deep: #B3CFE5;
+  --color-ocean-ink: #0A1931;
+  --color-ocean-muted: #335372;
+  --color-ocean-subtle: #62839F;
+
+  /* Editorial Parchment & Mount Tokens (retained for authentic material depth) */
+  --color-canvas: #F6FAFD;
+  --color-canvas-sub: #EBF3F9;
+  --color-canvas-elevated: #FFFFFF;
+  --color-canvas-mat: #F3F8FC;
+  --color-canvas-plate: #E5EFF7;
+  --color-canvas-plate-warm: #EBF2F8;
+
+  --color-ink: #0A1931;
+  --color-ink-muted: #335372;
+  --color-ink-subtle: #62839F;
+
+  --color-clay: #C1533B;
+  --color-clay-hover: #A33F29;
+  --color-clay-subtle: #F6EDE8;
+
+  --color-stone: #D2E3F0;
+  --color-stone-light: #E8F1F8;
+  --color-stone-deep: #B8D3E6;
+
+  --color-manjur-ink: #0A1931;
+  --color-bal-accent: #1A3D63;
+  --color-manjur-accent: #0A1931;
 }
 
-:root {
-  --color-paper: #F5F1E8;
-  --color-paper-soft: #EEE9DD;
-  --color-ink: #14201F;
-  --color-ink-soft: #4B5552;
-  --color-ink-muted: #8E9592;
-  --color-green: #063B31;
-  --color-green-deep: #022B24;
-  --color-line: rgba(20, 32, 31, 0.14);
-  --color-line-light: rgba(245, 241, 232, 0.18);
-  --color-grid: rgba(20, 32, 31, 0.05);
-  --color-grid-marker: rgba(20, 32, 31, 0.32);
-  --color-accent: #CDA66B;
-
-  --font-script: 'Caveat', cursive;
-}
-
-.font-script {
-  font-family: var(--font-script), 'Caveat', cursive;
-}
-
-/* ==========================================================================
-   Bespoke Animated Editorial Scrollbar
-   ========================================================================== */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: rgba(245, 241, 232, 0.6);
-  backdrop-filter: blur(8px);
-}
-
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #063B31 0%, #0d5447 50%, #CDA66B 100%);
-  background-size: 100% 200%;
-  background-position: 0 0%;
-  border-radius: 9999px;
-  border: 1.5px solid #F5F1E8;
-  background-clip: padding-box;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-position: 0 100%;
-  box-shadow: 0 0 10px rgba(205, 166, 107, 0.6);
-  border-color: #EEE9DD;
-}
-
-::-webkit-scrollbar-thumb:active {
-  background: #CDA66B;
-}
-
-* {
-  scrollbar-width: thin;
-  scrollbar-color: rgba(6, 59, 49, 0.5) rgba(245, 241, 232, 0.4);
-}
-
-html {
-  background-color: #F5F1E8;
-  color: #14201F;
-  font-family: var(--font-sans);
-  overflow-x: hidden;
-  max-width: 100vw;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden;
-  max-width: 100vw;
-  min-height: 100vh;
-}
-
-#root {
-  overflow-x: hidden;
-  max-width: 100vw;
-  min-height: 100vh;
-}
-
-/* Explicit display and responsive visibility rules */
-.hidden {
-  display: none;
-}
-
-@media (min-width: 640px) {
-  .sm\:flex {
-    display: flex;
+@layer base {
+  html {
+    scroll-behavior: smooth;
   }
-  .sm\:block {
-    display: block;
+
+  /* Accessibility: Respect user reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
-@media (min-width: 1024px) {
-  .lg\:flex {
-    display: flex;
+@layer utilities {
+  .monument-kerning {
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
   }
-  .lg\:block {
-    display: block;
+
+  /* Exhibition Passe-Partout Framing (Crisp museum/monograph photographic mount) */
+  .passe-partout-outer {
+    border: 1px solid var(--color-stone);
+    background-color: var(--color-canvas-mat);
+  }
+
+  .passe-partout-inner {
+    border: 1px solid var(--color-stone-deep);
+    background-color: var(--color-canvas-plate);
+  }
+
+  /* Fine double-rule publication border */
+  .double-hairline-b {
+    border-bottom: 3px double var(--color-stone);
+  }
+
+  .double-hairline-t {
+    border-top: 3px double var(--color-stone);
+  }
+
+  /* Institutional Gazette double rule accents */
+  .gazette-double-b {
+    border-bottom: 3px double #1A3D63;
+  }
+
+  .gazette-double-t {
+    border-top: 3px double #1A3D63;
+  }
+
+  /* Living Ocean Waves Animation System (Refined in Phase D.1) */
+  .animate-ocean-drift-1 {
+    animation: ocean-drift-slow 16s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
+  .animate-ocean-drift-2 {
+    animation: ocean-drift-reverse 20s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
+  .animate-ocean-ribbon {
+    animation: ocean-ribbon-flow 14s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+
+  .animate-ocean-pulse {
+    animation: ocean-pulse-gentle 9s ease-in-out infinite alternate;
+    will-change: opacity, transform;
+  }
+
+  .animate-ocean-shimmer {
+    animation: ocean-shimmer-shift 11s ease-in-out infinite alternate;
+    will-change: opacity, transform;
+  }
+
+  .animate-ocean-current {
+    animation: ocean-current-glide 18s ease-in-out infinite alternate;
+    will-change: transform;
   }
 }
 
-@media (min-width: 1280px) {
-  .xl\:flex {
-    display: flex;
-  }
-}
-
-/* Swiss Editorial Display Headline Classes — Monumental Editorial Scale */
-.hero-title-mobile {
-  font-size: clamp(2.8rem, 11vw, 4.5rem);
-  line-height: 0.85;
-  letter-spacing: -0.05em;
-  font-weight: 800;
-}
-
-@media (min-width: 640px) {
-  .hero-title-mobile {
-    font-size: clamp(3.8rem, 9.5vw, 5.5rem);
-    line-height: 0.83;
-    letter-spacing: -0.055em;
-    font-weight: 900;
-  }
-}
-
-.hero-title-desktop {
-  font-size: clamp(5.5rem, 8.5vw, 10rem);
-  line-height: 0.82;
-  letter-spacing: -0.06em;
-  font-weight: 900;
-}
-
-@media (min-width: 1536px) {
-  .hero-title-desktop {
-    font-size: clamp(6.5rem, 9vw, 11rem);
-    line-height: 0.80;
-    letter-spacing: -0.06em;
-    font-weight: 900;
-  }
-}
-
-/* Custom editorial focus ring */
-:focus-visible {
-  outline: 2px solid #063B31;
-  outline-offset: 3px;
-}
-
-/* Lenis smooth scrolling recommendations */
-html.lenis, html.lenis body {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
-}
-
-/* ==========================================================================
-   Living Ivory Atmospheric Background System
-   Large-scale, ultra-slow organic spatial drift of natural light and botanical wash.
-   Composited entirely on the GPU via translate3d / scale across oversized canvas.
-   ========================================================================== */
-
-/* Layer A: Primary Botanical Sage Field (lower-left -> center -> upper-center -> lower-left) */
-@keyframes atmosphere-travel-sage {
+@keyframes ocean-drift-slow {
   0% {
-    transform: translate3d(0vw, 0vh, 0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
   }
-  28% {
-    transform: translate3d(18vw, -10vh, 0) scale(1.04);
-  }
-  56% {
-    transform: translate3d(28vw, -24vh, 0) scale(1.02);
-  }
-  78% {
-    transform: translate3d(10vw, -14vh, 0) scale(0.97);
+  50% {
+    transform: translate3d(-24px, 14px, 0) scale(1.025);
   }
   100% {
-    transform: translate3d(0vw, 0vh, 0) scale(1);
+    transform: translate3d(16px, -10px, 0) scale(1.01);
   }
 }
 
-/* Layer B: Primary Champagne Sunlight (upper-right -> center-right -> lower-right -> upper-center -> upper-right) */
-@keyframes atmosphere-travel-champagne {
+@keyframes ocean-drift-reverse {
   0% {
-    transform: translate3d(0vw, 0vh, 0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
   }
-  25% {
-    transform: translate3d(-16vw, 15vh, 0) scale(1.03);
-  }
-  52% {
-    transform: translate3d(-8vw, 28vh, 0) scale(0.98);
-  }
-  76% {
-    transform: translate3d(-20vw, 8vh, 0) scale(1.02);
+  50% {
+    transform: translate3d(22px, -16px, 0) scale(1.02);
   }
   100% {
-    transform: translate3d(0vw, 0vh, 0) scale(1);
+    transform: translate3d(-14px, 12px, 0) scale(0.99);
   }
 }
 
-/* Layer C: Delicate Golden-Ivory Morning Accent (top-left -> center -> right -> top-left) */
-@keyframes atmosphere-travel-warm {
+@keyframes ocean-ribbon-flow {
   0% {
-    transform: translate3d(0vw, 0vh, 0) scale(1);
+    transform: translate3d(0, 0, 0) rotate(0deg);
   }
-  32% {
-    transform: translate3d(20vw, 14vh, 0) scale(0.97);
+  35% {
+    transform: translate3d(-18px, 14px, 0) rotate(0.4deg);
   }
-  64% {
-    transform: translate3d(34vw, 6vh, 0) scale(1.04);
-  }
-  84% {
-    transform: translate3d(14vw, -4vh, 0) scale(1.01);
+  70% {
+    transform: translate3d(14px, -10px, 0) rotate(-0.35deg);
   }
   100% {
-    transform: translate3d(0vw, 0vh, 0) scale(1);
+    transform: translate3d(-8px, 16px, 0) rotate(0.25deg);
   }
 }
 
-/* Layer D: Secondary Botanical Foliage Accent (bottom-right -> bottom-center -> center -> bottom-right) */
-@keyframes atmosphere-travel-botanical {
+@keyframes ocean-pulse-gentle {
+  0%, 100% {
+    opacity: 0.65;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.98;
+    transform: scale(1.03);
+  }
+}
+
+@keyframes ocean-shimmer-shift {
   0% {
-    transform: translate3d(0vw, 0vh, 0) scale(1);
+    opacity: 0.45;
+    transform: translate3d(0, 0, 0);
   }
-  30% {
-    transform: translate3d(-18vw, -12vh, 0) scale(1.03);
-  }
-  58% {
-    transform: translate3d(-26vw, -24vh, 0) scale(0.97);
-  }
-  82% {
-    transform: translate3d(-10vw, -8vh, 0) scale(1.01);
+  50% {
+    opacity: 0.88;
+    transform: translate3d(-20px, 10px, 0);
   }
   100% {
-    transform: translate3d(0vw, 0vh, 0) scale(1);
+    opacity: 0.55;
+    transform: translate3d(12px, -8px, 0);
   }
 }
 
-.atmosphere-layer-a {
-  animation: atmosphere-travel-sage 58s cubic-bezier(0.42, 0, 0.58, 1) infinite;
-  will-change: transform;
-}
-
-.atmosphere-layer-b {
-  animation: atmosphere-travel-champagne 74s cubic-bezier(0.42, 0, 0.58, 1) infinite;
-  will-change: transform;
-}
-
-.atmosphere-layer-c {
-  animation: atmosphere-travel-warm 66s cubic-bezier(0.42, 0, 0.58, 1) infinite;
-  will-change: transform;
-}
-
-.atmosphere-layer-d {
-  animation: atmosphere-travel-botanical 82s cubic-bezier(0.42, 0, 0.58, 1) infinite;
-  will-change: transform;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .atmosphere-layer-a,
-  .atmosphere-layer-b,
-  .atmosphere-layer-c,
-  .atmosphere-layer-d {
-    animation: none !important;
+@keyframes ocean-current-glide {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(18px, 12px, 0);
+  }
+  100% {
+    transform: translate3d(-14px, -12px, 0);
   }
 }
