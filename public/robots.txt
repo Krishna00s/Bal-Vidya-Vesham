@@ -1,0 +1,8 @@
+# Robots.txt for Manjurmati High School with Bal Vidyavasham
+# Production Domain: https://manjurmatihighschool.com
+
+User-agent: *
+Allow: /
+
+# Canonical Sitemap
+Sitemap: https://manjurmatihighschool.com/sitemap.xml

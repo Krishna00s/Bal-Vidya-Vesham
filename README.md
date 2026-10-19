@@ -1,15 +1,42 @@
-# Bal Vidyavasham — Official School Website
+# Bal Vidyavasham × Manjurmati High School
 
-An editorial, Swiss International Typographic Style-inspired website for **Bal Vidyavasham**, blending rigorous typographic discipline, structured grid systems, warm educational atmosphere, and high-performance frontend architecture.
+The official dual-institution web platform for **Bal Vidyavasham** (Foundational & Primary Wing, Classes Nursery–V) and **Manjurmati High School** (Secondary Wing, Classes VI–X, JAC Affiliated), located in Mahadetoli, Senha, Lohardaga, Jharkhand.
 
 ---
 
 ## 🏛️ Project Overview
 
-- **Design Philosophy:** Swiss International Style + Warm Academic Heritage.
-- **Core Palette:** Warm Paper / Ivory (`#F5F1E8`), Deep Institutional Green (`#063B31`), Dark Ink (`#14201F`), Restrained Champagne / Gold (`#CDA66B`).
-- **Typography:** `Inter` (Functional/UI hierarchy) + `Cormorant Garamond` (Editorial display & storytelling).
-- **Smooth Scrolling & Motion:** Lenis + GSAP (ScrollTrigger-ready, strict lifecycle teardown via `gsap.context()`, and `prefers-reduced-motion` compliance).
+- **Dual-School Identity:** Bal Vidyavasham (Foundational & Primary) and Manjurmati High School (JAC Secondary).
+- **Core Visual Identity:** The Living Ocean Canvas with editorial styling.
+  - Midnight Navy: `#0A1931`
+  - Deep Marine: `#1A3D63`
+  - Ocean Blue: `#4A7FA7`
+  - Powder Blue: `#B3CFE5`
+  - Porcelain: `#F6FAFD`
+- **Typography:**
+  - Display: *Cormorant Garamond*
+  - Editorial & Gazette: *Newsreader*
+  - Body & UI: *Plus Jakarta Sans*
+  - Monospace / Metadata: *JetBrains Mono*
+- **Motion Architecture:** Lenis smooth scrolling, GSAP ScrollTrigger timeline reveals, ImageApertures, and WebGL dynamic wave shaders.
+
+---
+
+## 🗺️ Website Architecture & Destinations
+
+The application features 10 fully implemented client-side destinations:
+
+1. `/` — Home (Hero, School Chapters, Facilities, Principals' Leadership, Gazette Noticeboard, School Life Chronicle, Admissions callout)
+2. `/junior-school` — Bal Vidyavasham Primary Wing (Nursery–V)
+3. `/senior-school` — Manjurmati High School Secondary Wing (VI–X)
+4. `/academics` — Comprehensive Curricular Frameworks & Pedagogical Structure
+5. `/facilities` — Infrastructure, Science Laboratories, Atal Tinkering Lab (ATL), and Campus Grounds
+6. `/faculty-leadership` — Administrative Leadership, Principals' Messages, and Faculty Profiles
+7. `/notices` — Institutional Gazette & Archival Document Register
+8. `/school-life` — Visual Chronicles, Daily Schedule, and Student Cohort Milestones
+9. `/admissions` — 3-Step Enrolment Roadmap (School Selection, Document Checklist, Static Client-Side Dispatch)
+10. `/contact` — Campus Location, Transportation Guides, and Direct Enquiry Helplines
+11. `*` — 404 Institutional Recovery Page
 
 ---
 
@@ -19,8 +46,7 @@ An editorial, Swiss International Typographic Style-inspired website for **Bal V
 - **Build Tool:** Vite 8
 - **Styling:** Tailwind CSS v4 (native `@theme` tokens in `src/index.css`)
 - **Animation:** GSAP 3 + Lenis smooth scroll
-- **Icons:** Lucide React
-- **Quality & Linting:** ESLint 9 + TypeScript Compiler (`tsc -b`)
+- **Type Checking:** TypeScript Compiler (`tsc --noEmit`)
 
 ---
 
@@ -28,50 +54,51 @@ An editorial, Swiss International Typographic Style-inspired website for **Bal V
 
 ```text
 src/
-├── components/
-│   ├── layout/            # Header, MobileNav, Layout wrappers
-│   ├── sections/          # Page sections (HeroSection, etc.)
-│   └── ui/                # Core primitives (Container, Button, MicroLabel, etc.)
-├── content/               # Typed school data & navigation models
-├── hooks/                 # Custom hooks (e.g. usePrefersReducedMotion)
-├── motion/                # Centralized Lenis & GSAP ticker bridge
-├── types/                 # TypeScript interfaces and domain schemas
-├── App.tsx                # Application root with smooth scroll provider
-├── index.css              # Tailwind v4 theme tokens & typography styles
-└── main.tsx               # Client entry point
+├── components/          # Institutional components (Hero, SchoolChapters, Facilities,
+│                        # PrincipalsMessage, Noticeboard, OceanCanvas, Header, Footer)
+├── data/                # Typed domain models (notices, facilities, faculty, principals, contact)
+├── motion/              # Lenis smooth scroll, GSAP context, ImageAperture, ScrollReveal
+├── pages/               # 10 dedicated view destinations + 404 recovery
+├── router/              # Lightweight client-side router
+├── App.tsx              # Root application shell with Living Ocean Canvas & Lenis provider
+├── index.css            # Tailwind v4 theme tokens, color scales, custom typography
+└── main.tsx             # Client entry point
+public/
+├── images/              # High-fidelity WebP & JPG documentary photographs
+├── images_source_originals/ # Source archive photographs
+├── favicon.svg          # Institutional SVG mark
+├── robots.txt           # Production search crawler instructions
+├── sitemap.xml          # XML sitemap indexing all 10 destinations
+└── _redirects           # Static SPA rewrite rules
 ```
 
 ---
 
 ## 🚀 Getting Started
 
-### Prerequisites
-- Node.js (v20+ recommended)
-- npm or pnpm
-
 ### Installation
 ```bash
 npm install
 ```
 
-### Development
+### Development Server
 ```bash
 npm run dev
 ```
 
-### Production Build & Verification
+### Type Checking & Production Build
 ```bash
+npm run typecheck
 npm run build
-npm run lint
+```
+
+### Production Preview
+```bash
+npm run preview
 ```
 
 ---
 
-## 📄 Phase 1 Implementation Status
+## 📚 Historical Documentation
 
-- [x] Design token system defined in Tailwind v4 (`@theme`)
-- [x] Centralized Lenis smooth scroll & GSAP ticker integration
-- [x] Accessible, responsive navigation header (Desktop numbered menu + Mobile drawer with focus trapping)
-- [x] Complete Hero Section visual benchmark according to design specification
-- [x] Verified zero horizontal overflow across 320px–1920px viewports
-- [x] Full audit report available in [`PHASE_1_IMPLEMENTATION_REPORT.md`](./PHASE_1_IMPLEMENTATION_REPORT.md)
+Legacy phase reports and initial foundation documentation are archived in [`docs/archive_legacy_phases/`](./docs/archive_legacy_phases/).
